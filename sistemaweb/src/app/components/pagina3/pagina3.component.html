@@ -1,0 +1,29 @@
+<div class="products-section">
+    <div class="container text-center">
+        <h1 class="products-title">NUESTROS PRODUCTOS</h1>
+        <hr class="underline">
+        <p class="subtitle">Los mejores productos y precios</p>
+        <div class="categories">
+            <button (click)="filterProducts('all')">TODAS LAS CATEGORIAS</button>
+            <button (click)="filterProducts('embrague')">DISCO, PLATO Y COLLARÍN DE EMBRAGUE</button>
+            <button (click)="filterProducts('freno')">PASTILLA Y ZAPATA DE FRENO</button>
+            <button (click)="filterProducts('caja')">PIÑON Y PARTE DE CAJA</button>
+            <button (click)="filterProducts('nueva')">NUEVA CATEGORIA</button>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" *ngFor="let product of filteredProducts" (click)="openModal(product)">
+                <img [src]="product.image" alt="{{ product.name }}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" [class.show]="modalOpen">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <img [src]="selectedProduct?.image" alt="{{ selectedProduct?.name }}">
+        <h2>{{ selectedProduct?.name }}</h2>
+        <p>{{ selectedProduct?.description }}</p>
+    </div>
+</div>
